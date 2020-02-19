@@ -71,7 +71,7 @@ We present results for soft masking and for multi-channel Wiener filtering (appl
 |Open-Unmix    |6.32|13.33|6.52|11.93|5.23|**10.93**|**6.34**|9.23|5.73|11.12|6.02|10.51|4.02|6.59|4.74|9.31|
 
 
-Spleeter is available on github [@spleeter] with a MIT license. This repository will be possibly used for releasing other models with improved performances or models separating into more than $5$ stems in the future.
+Spleeter is available at <https://www.github.com/deezer/spleeter> with a MIT license. This repository will be possibly used for releasing other models with improved performances or models separating into more than $5$ stems in the future.
 
 
 
