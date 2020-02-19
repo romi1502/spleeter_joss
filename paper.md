@@ -62,10 +62,10 @@ As the whole separation pipeline can be run on a GPU and the model is based on a
 The models compete with the state of the art on the standard musdb18  dataset [@musdb18] while it was not trained, validated or optimized in any way with musdb18 data. We report results in terms of standard source separation metrics [@separation_metrics], namely Signal to Distorition Ration (SDR), Signal to Artifacts Ratio (SAR), Signal to Interference Ration (SIR) and source Image to Spatial distortion Ratio (ISR), are presented in the following table compared to Open-Unmix [@Open-Unmix] which is, to the authors knowledge, the only released system that performs near state-of-the-art performances.
 We present results for soft masking and for multi-channel Wiener filtering (applied using Norbert [@Norbert]). As can be seen, for most metrics Spleeter is competitive with Open-Unmix and especially on SDR for all instruments.
 
-|              |     vocals    |      bass     |     drums     |     other     |
-|--------------|---------------|---------------|---------------|---------------|
+|              |     vocals ||||      bass  ||||    drums   ||||     other  ||||
+|--------------|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 |              |SDR|SIR|SAR|ISR|SDR|SIR|SAR|ISR|SDR|SIR|SAR|ISR|SDR|SIR|SAR|ISR|
-|Spleeter Mask |6.55|15.19|6.44|**12.01**|5.10|10.01|5.15|9.18|5.93|12.24|5.78|10.50|4.24|7.86|4.63|9.83|
+|Spleeter Mask |6.55|15.19|6.44|__12.01__|5.10|10.01|5.15|9.18|5.93|12.24|5.78|10.50|4.24|7.86|4.63|9.83|
 |Spleeter MWF  |**6.86**|**15.86**|**6.99**|11.95|**5.51**|10.30|5.96|**9.61**|**6.71**|**13.67**|**6.54**|**10.69**|**4.55**|**8.16|**4.88**|**9.87**|
 |Open-Unmix    |6.32|13.33|6.52|11.93|5.23|**10.93**|**6.34**|9.23|5.73|11.12|6.02|10.51|4.02|6.59|4.74|9.31|
 
