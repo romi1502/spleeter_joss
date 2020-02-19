@@ -27,8 +27,9 @@ bibliography: paper.bib
 # Summary
 
 We present and release a new tool for music source separation with pre-trained models called Spleeter. Spleeter was designed with ease of use, separation performance and speed in mind. Spleeter is based on Tensorflow [@tensorflow2015-whitepaper] and makes it possible to:
-  * separate audio files into $2$, $4$ or $5$ stems with a single command line using pre-trained models.
-  * train source separation models or fine-tune pre-trained ones with Tensorflow (provided you have a dataset of isolated sources).
+
+* separate audio files into $2$, $4$ or $5$ stems with a single command line using pre-trained models.
+* train source separation models or fine-tune pre-trained ones with Tensorflow (provided you have a dataset of isolated sources).
 
 The performance of the pre-trained models are very close to the published state of the art and is, to the authors knowledge, the best performing $4$ stems separation model on the common musdb18 benchmark [@musdb18] to be publicly released. Spleeter is also very fast as it can separate a mix audio file into $4$ stems $100$ times faster than real-time (We note, though, that the model cannot be applied in real-time as it needs buffering) on a single Graphics Processing Unit (GPU) using the pre-trained $4$-stems model. Spleeter is packaged within Docker which makes it usable as is on various platforms.
 
@@ -63,16 +64,15 @@ We present results for soft masking and for multi-channel Wiener filtering (appl
 
 
 
-|              |     vocals    |      bass     |     drums     |     other     |
+|              |     vocals ||||      bass  ||||    drums   ||||     other  ||||
 |--------------|---------------|---------------|---------------|---------------|
 |              |SDR|SIR|SAR|ISR|SDR|SIR|SAR|ISR|SDR|SIR|SAR|ISR|SDR|SIR|SAR|ISR|
-|Spleeter Mask |6.55|15.19|6.44|**12.01**|5.10|10.01|5.15|9.18|5.93|12.24|5.78|10.50|4.24|7.86|4.63|9.83|
+|Spleeter Mask |6.55|15.19|6.44|__12.01__|5.10|10.01|5.15|9.18|5.93|12.24|5.78|10.50|4.24|7.86|4.63|9.83|
 |Spleeter MWF  |**6.86**|**15.86**|**6.99**|11.95|**5.51**|10.30|5.96|**9.61**|**6.71**|**13.67**|**6.54**|**10.69**|**4.55**|**8.16|**4.88**|**9.87**|
 |Open-Unmix    |6.32|13.33|6.52|11.93|5.23|**10.93**|**6.34**|9.23|5.73|11.12|6.02|10.51|4.02|6.59|4.74|9.31|
 
 
 Spleeter is available at <https://www.github.com/deezer/spleeter> with a MIT license. This repository will be possibly used for releasing other models with improved performances or models separating into more than $5$ stems in the future.
-
 
 
 # Acknowledgements
