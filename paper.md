@@ -66,8 +66,7 @@ We present results for soft masking and for multi-channel Wiener filtering (appl
 
 |           |Spleeter Mask  |Spleeter MWF   |Open-Unmix |
 |-----------|---------------|---------------|-----------|
-|-----------|---------------|---------------|-----------|
-| Vocals SDR|6.55           |__6.86__       |6.32       |
+| Vocals SDR|6.55           |**6.86**       |6.32       |
 | Vocals SIR|15.19          |**15.86**      |13.33      |
 | Vocals SAR|6.44           |**6.99**       |6.52       |
 | Vocals ISR|**12.01**      |11.95          |11.93      |
