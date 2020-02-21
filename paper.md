@@ -64,13 +64,29 @@ The models compete with the state of the art on the standard musdb18  dataset [@
 We present results for soft masking and for multi-channel Wiener filtering (applied using Norbert [@Norbert]). As can be seen, for most metrics Spleeter is competitive with Open-Unmix and especially on SDR for all instruments.
 
 
-
-|              |     vocals ||||      bass  ||||    drums   ||||     other  ||||
-|--------------|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-|              |SDR|SIR|SAR|ISR|SDR|SIR|SAR|ISR|SDR|SIR|SAR|ISR|SDR|SIR|SAR|ISR|
-|Spleeter Mask |6.55|15.19|6.44|__12.01__|5.10|10.01|5.15|9.18|5.93|12.24|5.78|10.50|4.24|7.86|4.63|9.83|
-|Spleeter MWF  |**6.86**|**15.86**|**6.99**|11.95|**5.51**|10.30|5.96|**9.61**|**6.71**|**13.67**|**6.54**|**10.69**|**4.55**|**8.16|**4.88**|**9.87**|
-|Open-Unmix    |6.32|13.33|6.52|11.93|5.23|**10.93**|**6.34**|9.23|5.73|11.12|6.02|10.51|4.02|6.59|4.74|9.31|
+|-----------|---------------|---------------|-----------|
+|           |Spleeter Mask  |Spleeter MWF   |Open-Unmix |
+|-----------|---------------|---------------|-----------|
+| Vocals SDR|6.55           |**6.86**       |6.32       |
+| Vocals SIR|15.19          |**15.86**      |13.33      |
+| Vocals SAR|6.44           |**6.99**       |6.52       |
+| Vocals ISR|**12.01**      |11.95          |11.93      |
+|-----------|---------------|---------------|-----------|
+| Bass SDR  |5.10           |**5.51**       |5.23       |
+| Bass SIR  |10.01          |10.30          |**10.93**  |
+| Bass SAR  |5.15           |5.96           |**6.34**   |
+| Bass ISR  |9.18           |**9.61**       |9.23       |
+|-----------|---------------|---------------|-----------|
+| Drums SDR |5.93           |**6.71**       |5.73       |
+| Drums SIR |12.24          |**13.67**      |11.12      |
+| Drums SAR |5.78           |**6.54**       |6.02       |
+| Drums ISR |10.50          |**10.69**      |10.51      |
+|-----------|---------------|---------------|-----------|
+| Other SDR |4.24           |**4.55**       |4.02       |
+| Other SIR |7.86           |**8.16**       |6.59       |
+| Other SAR |4.63           |**4.88**       |4.74       |
+| Other ISR |9.83           |**9.87**       |9.31       |
+|-----------|---------------|---------------|-----------|
 
 
 Spleeter is available at <https://www.github.com/deezer/spleeter> with a MIT license. This repository will be possibly used for releasing other models with improved performances or models separating into more than $5$ stems in the future.
