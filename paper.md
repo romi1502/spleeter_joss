@@ -28,14 +28,14 @@ bibliography: paper.bib
 
 We present and release a new tool for music source separation with pre-trained models called Spleeter. Spleeter was designed with ease of use, separation performance and speed in mind. Spleeter is based on Tensorflow [@tensorflow2015-whitepaper] and makes it possible to:
 
-- separate audio files into $2$, $4$ or $5$ stems with a single command line using pre-trained models.
+- split music audio files into several stems with a single command line using pre-trained models. A music audio file can be separated to $2$ stems (vocals and accompaniments), $4$ stems (vocals, drums, bass and other) or $5$ stems (vocals, drums, bass, piano and other).
 - train source separation models or fine-tune pre-trained ones with Tensorflow (provided you have a dataset of isolated sources).
 
-The performance of the pre-trained models are very close to the published state of the art and is, to the authors knowledge, the best performing $4$ stems separation model on the common musdb18 benchmark [@musdb18] to be publicly released. Spleeter is also very fast as it can separate a mix audio file into $4$ stems $100$ times faster than real-time (We note, though, that the model cannot be applied in real-time as it needs buffering) on a single Graphics Processing Unit (GPU) using the pre-trained $4$-stems model.
+The performance of the pre-trained models are very close to the published state of the art and is one of the best performing $4$ stems separation model on the common musdb18 benchmark [@musdb18] to be publicly released. Spleeter is also very fast as it can separate a mix audio file into $4$ stems $100$ times faster than real-time (we note, though, that the model cannot be applied in real-time as it needs buffering) on a single Graphics Processing Unit (GPU) using the pre-trained $4$-stems model.
 
 ## Purpose
 
-We release Spleeter with pre-trained state-of-the-art models in order to help the Music Information Retrieval (MIR) community leverage the power of source separation in various Music Information Retrieval (MIR) tasks, such as vocal lyrics analysis from audio (audio/lyrics alignement, lyrics transcription...), music transcription (chord transcription, drums transcription, bass transcription, chord estimation, beat tracking), singer identification, any type of multilabel classification (mood/genre...) or vocal melody extraction.
+We release Spleeter with pre-trained state-of-the-art models in order to help the Music Information Retrieval (MIR) research community leverage the power of source separation in various Music Information Retrieval (MIR) tasks, such as vocal lyrics analysis from audio (audio/lyrics alignement, lyrics transcription...), music transcription (chord transcription, drums transcription, bass transcription, chord estimation, beat tracking), singer identification, any type of multilabel classification (mood/genre...), vocal melody extraction or cover detection.
 We believe that source separation has reached a level of maturity that makes it worth of consideration for these tasks and that specific features computed from isolated vocals, drums or bass may help increase performances, especially in low data availability scenarios (small datasets, limited annotation availability) for which supervised learning might be difficult.
 Spleeter also makes it possible to fine tune the provided state-of-the-art models in order to adapt the system to a specific use-case.
 Finally, having an available source separation tool such as Spleeter will allow researchers to compare performances of their new models to a state-of-the-art one on their own private datasets instead of musdb18, which is usually the only used dataset for reporting separation performances for unreleased models.
@@ -59,32 +59,32 @@ As the whole separation pipeline can be run on a GPU and the model is based on a
 
 ## Separation performances
 
-The models compete with the state of the art on the standard musdb18  dataset [@musdb18] while it was not trained, validated or optimized in any way with musdb18 data. We report results in terms of standard source separation metrics [@separation_metrics], namely Signal to Distorition Ration (SDR), Signal to Artifacts Ratio (SAR), Signal to Interference Ration (SIR) and source Image to Spatial distortion Ratio (ISR), are presented in the following table compared to Open-Unmix [@Open-Unmix] which is, to the authors knowledge, the only released system that performs near state-of-the-art performances.
-We present results for soft masking and for multi-channel Wiener filtering (applied using Norbert [@Norbert]). As can be seen, for most metrics Spleeter is competitive with Open-Unmix and especially on SDR for all instruments.
+The models compete with the state of the art on the standard musdb18 dataset [@musdb18] while it was not trained, validated or optimized in any way with musdb18 data. We report results in terms of standard source separation metrics [@separation_metrics], namely Signal to Distorition Ration (SDR), Signal to Artifacts Ratio (SAR), Signal to Interference Ration (SIR) and source Image to Spatial distortion Ratio (ISR), are presented in the following table compared to Open-Unmix [@Open-Unmix] and Demucs [@demucs] (only SDR are reported for Demucs since other metrics are not available in the paper) which are, to the authors knowledge, the only released system that perform near state-of-the-art performances.
+We present results for soft masking and for multi-channel Wiener filtering (applied using Norbert [@Norbert]). As can be seen, for most metrics Spleeter is competitive with Open-Unmix and especially on SDR for all instruments, and is almost on par with Demucs.
 
 
 
-|           |Spleeter Mask  |Spleeter MWF   |Open-Unmix |
-|-----------|---------------|---------------|-----------|
-| Vocals SDR|6.55           |**6.86**       |6.32       |
-| Vocals SIR|15.19          |**15.86**      |13.33      |
-| Vocals SAR|6.44           |**6.99**       |6.52       |
-| Vocals ISR|**12.01**      |11.95          |11.93      |
-| Bass SDR  |5.10           |**5.51**       |5.23       |
-| Bass SIR  |10.01          |10.30          |**10.93**  |
-| Bass SAR  |5.15           |5.96           |**6.34**   |
-| Bass ISR  |9.18           |**9.61**       |9.23       |
-| Drums SDR |5.93           |**6.71**       |5.73       |
-| Drums SIR |12.24          |**13.67**      |11.12      |
-| Drums SAR |5.78           |**6.54**       |6.02       |
-| Drums ISR |10.50          |**10.69**      |10.51      |
-| Other SDR |4.24           |**4.55**       |4.02       |
-| Other SIR |7.86           |**8.16**       |6.59       |
-| Other SAR |4.63           |**4.88**       |4.74       |
-| Other ISR |9.83           |**9.87**       |9.31       |
+|           |Spleeter Mask  |Spleeter MWF   |Open-Unmix |Demucs|
+|-----------|---------------|---------------|-----------|------|
+| Vocals SDR|6.55           |6.86           |6.32       |7.05  |
+| Vocals SIR|15.19          |15.86          |13.33      |      |
+| Vocals SAR|6.44           |6.99           |6.52       |      |
+| Vocals ISR|12.01          |11.95          |11.93      |      |
+| Bass SDR  |5.10           |5.51           |5.23       |6.70  |
+| Bass SIR  |10.01          |10.30          |10.93      |      |
+| Bass SAR  |5.15           |5.96           |6.34       |      |
+| Bass ISR  |9.18           |9.61           |9.23       |      |
+| Drums SDR |5.93           |6.71           |5.73       |7.08  |
+| Drums SIR |12.24          |13.67          |11.12      |      |
+| Drums SAR |5.78           |6.54           |6.02       |      |
+| Drums ISR |10.50          |10.69          |10.51      |      |
+| Other SDR |4.24           |4.55           |4.02       |4.47  |
+| Other SIR |7.86           |8.16           |6.59       |      |
+| Other SAR |4.63           |4.88           |4.74       |      |
+| Other ISR |9.83           |9.87           |9.31       |      |
 
 
-Spleeter source code and pre-trained models are available on [github](https://www.github.com/deezer/spleeter) and distributed under a MIT license. This repository  will eventually be used for releasing other models with improved performances or models separating into more than $5$ stems in the future.
+Spleeter [@spleeter] source code and pre-trained models are available on [github](https://www.github.com/deezer/spleeter) and distributed under a MIT license. This repository  will eventually be used for releasing other models with improved performances or models separating into more than $5$ stems in the future.
 
 ## Distribution
 
