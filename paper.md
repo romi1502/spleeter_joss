@@ -19,7 +19,7 @@ authors:
 affiliations:
  - name: Deezer Research, Paris
    index: 1
-date: 20 February 2020
+date: 04 March 2020
 bibliography: paper.bib
 
 ---
