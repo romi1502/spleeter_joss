@@ -28,15 +28,15 @@ bibliography: paper.bib
 
 We present and release a new tool for music source separation with pre-trained models called Spleeter. Spleeter was designed with ease of use, separation performance and speed in mind. Spleeter is based on Tensorflow [@tensorflow2015-whitepaper] and makes it possible to:
 
-- split music audio files into several stems with a single command line using pre-trained models. A music audio file can be separated to $2$ stems (vocals and accompaniments), $4$ stems (vocals, drums, bass and other) or $5$ stems (vocals, drums, bass, piano and other).
+- split music audio files into several stems with a single command line using pre-trained models. A music audio file can be separated into $2$ stems (vocals and accompaniments), $4$ stems (vocals, drums, bass and other) or $5$ stems (vocals, drums, bass, piano and other).
 - train source separation models or fine-tune pre-trained ones with Tensorflow (provided you have a dataset of isolated sources).
 
 The performance of the pre-trained models are very close to the published state of the art and is one of the best performing $4$ stems separation model on the common musdb18 benchmark [@musdb18] to be publicly released. Spleeter is also very fast as it can separate a mix audio file into $4$ stems $100$ times faster than real-time (we note, though, that the model cannot be applied in real-time as it needs buffering) on a single Graphics Processing Unit (GPU) using the pre-trained $4$-stems model.
 
 ## Purpose
 
-We release Spleeter with pre-trained state-of-the-art models in order to help the Music Information Retrieval (MIR) research community leverage the power of source separation in various Music Information Retrieval (MIR) tasks, such as vocal lyrics analysis from audio (audio/lyrics alignement, lyrics transcription...), music transcription (chord transcription, drums transcription, bass transcription, chord estimation, beat tracking), singer identification, any type of multilabel classification (mood/genre...), vocal melody extraction or cover detection.
-We believe that source separation has reached a level of maturity that makes it worth of consideration for these tasks and that specific features computed from isolated vocals, drums or bass may help increase performances, especially in low data availability scenarios (small datasets, limited annotation availability) for which supervised learning might be difficult.
+We release Spleeter with pre-trained state-of-the-art models in order to help the Music Information Retrieval (MIR) research community leverage the power of source separation in various MIR tasks, such as vocal lyrics analysis from audio (audio/lyrics alignement, lyrics transcription...), music transcription (chord transcription, drums transcription, bass transcription, chord estimation, beat tracking), singer identification, any type of multilabel classification (mood/genre...), vocal melody extraction or cover detection.
+We believe that source separation has reached a level of maturity that makes it worth consideration for these tasks and that specific features computed from isolated vocals, drums or bass may help increase performances, especially in low data availability scenarios (small datasets, limited annotation availability) for which supervised learning might be difficult.
 Spleeter also makes it possible to fine tune the provided state-of-the-art models in order to adapt the system to a specific use-case.
 Finally, having an available source separation tool such as Spleeter will allow researchers to compare performances of their new models to a state-of-the-art one on their own private datasets instead of musdb18, which is usually the only used dataset for reporting separation performances for unreleased models.
 Note that we cannot release the training data for copyright reasons, and thus, sharing pre-trained models were the only way to make these results available to the community.
@@ -55,13 +55,12 @@ Training and inference is implemented in Tensorflow which makes it possible to r
 
 ## Speed
 
-As the whole separation pipeline can be run on a GPU and the model is based on a CNN (which makes computation parallelization very efficient), model inference is very fast. For instance, Spleeter is able to separate the whole musdb18 test dataset (about $3$ hours and $27$ minutes of audio) into $4$ stems in less than $2$ minutes, including model loading time (about $15$ seconds), and audio wav files export, using a single GeForce RTX 2080 GPU, and a double Intel Xeon Gold 6134 CPU @ 3.20GHz (CPU is used for mix files loading and stem files export only). Spleeter is then able to separate into $4$ stems $100$ seconds of stereo audio in less than $1$ second, which makes it very useful for efficiently processing large datasets.
+As the whole separation pipeline can be run on a GPU and the model is based on a CNN, computations are efficiently parallelized and model inference is very fast. For instance, Spleeter is able to separate the whole musdb18 test dataset (about $3$ hours and $27$ minutes of audio) into $4$ stems in less than $2$ minutes, including model loading time (about $15$ seconds), and audio wav files export, using a single GeForce RTX 2080 GPU, and a double Intel Xeon Gold 6134 CPU @ 3.20GHz (CPU is used for mix files loading and stem files export only). In this setup, Spleeter is able to process $100$ seconds of stereo audio in less than $1$ second, which makes it very useful for efficiently processing large datasets.
 
 ## Separation performances
 
-The models compete with the state of the art on the standard musdb18 dataset [@musdb18] while it was not trained, validated or optimized in any way with musdb18 data. We report results in terms of standard source separation metrics [@separation_metrics], namely Signal to Distorition Ration (SDR), Signal to Artifacts Ratio (SAR), Signal to Interference Ration (SIR) and source Image to Spatial distortion Ratio (ISR), are presented in the following table compared to Open-Unmix [@Open-Unmix] and Demucs [@demucs] (only SDR are reported for Demucs since other metrics are not available in the paper) which are, to the authors knowledge, the only released system that perform near state-of-the-art performances.
+The models compete with the state of the art on the standard musdb18 dataset [@musdb18] while it was not trained, validated or optimized in any way with musdb18 data. We report results in terms of standard source separation metrics [@separation_metrics], namely Signal to Distortion Ration (SDR), Signal to Artifacts Ratio (SAR), Signal to Interference Ratio (SIR) and source Image to Spatial distortion Ratio (ISR), are presented in the following table compared to Open-Unmix [@Open-Unmix] and Demucs [@demucs] (only SDR are reported for Demucs since other metrics are not available in the paper) which are, to the authors knowledge, the only released system that perform near state-of-the-art performances.
 We present results for soft masking and for multi-channel Wiener filtering (applied using Norbert [@Norbert]). As can be seen, for most metrics Spleeter is competitive with Open-Unmix and especially on SDR for all instruments, and is almost on par with Demucs.
-
 
 
 |           |Spleeter Mask  |Spleeter MWF   |Open-Unmix |Demucs|
@@ -88,10 +87,10 @@ Spleeter [@spleeter] source code and pre-trained models are available on [github
 
 ## Distribution
 
-Spleeter is available as a standalone Python package, and also provided as a [conda](https://github.com/conda-forge/spleeter-feedstock) recipe self-contained [Dockers](https://hub.docker.com/r/researchdeezer/spleeter) which makes it usable as is on various platforms.
+Spleeter is available as a standalone Python package, and also provided as a [conda](https://github.com/conda-forge/spleeter-feedstock) recipe and self-contained [Dockers](https://hub.docker.com/r/researchdeezer/spleeter) which makes it usable as is on various platforms.
 
 ## Acknowledgements
 
-We acknowledge contributions from Laure Pretet that trained first models and write the first piece of code that lead to Spleeter.
+We acknowledge contributions from Laure Pretet who trained first models and wrote the first piece of code that lead to Spleeter.
 
 ## References
